@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #09090b;
+    --bg-secondary: #141418;
+    --bg-card: rgba(28, 28, 34, 0.9);
+    --bg-card-hover: rgba(33, 33, 42, 0.95);
+    --border: #2a2a35;
+    --border-hover: #3d3d4d;
+    --text-primary: #e4e4f0;
+    --text-secondary: #71717a;
+    --text-muted: #3f3f46;
+    --accent: #8b5cf6;
+    --accent-hover: #7c3aed;
+    --accent-dim: rgba(139, 92, 246, 0.12);
+    --accent-bright: #a78bfa;
+    --high: #f87171;
+    --high-dim: rgba(248, 113, 113, 0.12);
+    --medium: #fb923c;
+    --medium-dim: rgba(251, 146, 60, 0.12);
+    --low: #4ade80;
+    --low-dim: rgba(74, 222, 128, 0.12);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { font-family: 'Manrope', sans-serif; }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .glass-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+  }
+
+  .focus-input {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: 'Manrope', sans-serif;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+  }
+
+  .focus-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+
+  .focus-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .mono-input {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 100%;
+  }
+
+  .mono-input:focus {
+    outline: none;
+  }
+
+  .mono-input::placeholder {
+    color: var(--text-muted);
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .completed-text {
+    position: relative;
+    color: var(--text-muted) !important;
+  }
+
+  .completed-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 1px;
+    width: 100%;
+    background: var(--text-muted);
+  }
+}
+
+/* Aurora background orbs */
+.aurora-container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.aurora-orb-1 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.18), transparent 70%);
+  top: -250px;
+  left: -150px;
+  animation: float1 22s ease-in-out infinite;
+}
+
+.aurora-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.15), transparent 70%);
+  top: 35%;
+  right: -120px;
+  animation: float2 28s ease-in-out infinite;
+}
+
+.aurora-orb-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 70%);
+  bottom: 5%;
+  left: 25%;
+  animation: float3 19s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(50px, 30px) scale(1.06); }
+  66%       { transform: translate(-25px, 50px) scale(0.96); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(-40px, -50px); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(25px, -35px) scale(1.12); }
+}
+
+/* Date input dark mode */
+input[type="date"] {
+  color-scheme: dark;
+}
